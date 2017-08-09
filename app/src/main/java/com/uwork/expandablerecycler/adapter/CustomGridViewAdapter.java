@@ -7,31 +7,34 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.uwork.expandablerecycler.R;
+import com.uwork.expandablerecycler.bean.ChildBean;
+
+import java.util.List;
 
 
 public class CustomGridViewAdapter extends BaseAdapter {
 
-	private String[] list;
+	private List<ChildBean> list;
 	private Context context;
 	private int position = 0;
 	Holder view;
 
-	public CustomGridViewAdapter(Context context, String[] text_list) {
-		this.list = text_list;
+	public CustomGridViewAdapter(Context context, List<ChildBean> list) {
+		this.list = list;
 		this.context = context;
 	}
 
 	@Override
 	public int getCount() {
-		if (list != null && list.length > 0)
-			return list.length;
+		if (list != null && list.size() > 0)
+			return list.size();
 		else
 			return 0;
 	}
 
 	@Override
 	public Object getItem(int position) {
-		return list[position];
+		return list.get(position);
 	}
 
 	@Override
@@ -48,8 +51,8 @@ public class CustomGridViewAdapter extends BaseAdapter {
 		} else {
 			view = (Holder) convertView.getTag();
 		}
-		if (list != null && list.length > 0) {
-			view.name.setText(list[position]);
+		if (list != null && list.size() > 0) {
+			view.name.setText(list.get(position).getInfo());
 		}
 
 		return convertView;

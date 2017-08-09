@@ -9,15 +9,14 @@ import android.widget.ListView;
 
 import com.uwork.expandablerecycler.adapter.CustomClassifyMainAdapter;
 import com.uwork.expandablerecycler.adapter.CustomGridViewAdapter;
+import com.uwork.expandablerecycler.bean.ChildBean;
 import com.uwork.expandablerecycler.model.Model;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class CustomGridViewActivity extends Activity {
-    private ListView mainlist;
-    private GridView morelist;
-    private List<String> mainList;
+    private ListView mainList;
+    private GridView moreList;
     CustomClassifyMainAdapter mainAdapter;
     CustomGridViewAdapter moreAdapter;
 
@@ -25,32 +24,31 @@ public class CustomGridViewActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom_gridview);
-        initModle();
         initView();
     }
 
     private void initView() {
-        mainlist = (ListView) findViewById(R.id.classify_mainlist);
-        morelist = (GridView) findViewById(R.id.classify_morelist);
-        mainAdapter = new CustomClassifyMainAdapter(this, mainList);
+        mainList = (ListView) findViewById(R.id.classify_mainlist);
+        moreList = (GridView) findViewById(R.id.classify_morelist);
+        mainAdapter = new CustomClassifyMainAdapter(this, Model.getGroups());
         mainAdapter.setSelectItem(0);
-        mainlist.setAdapter(mainAdapter);
+        mainList.setAdapter(mainAdapter);
 
-        mainlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mainList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                initAdapter(Model.MORELISTTXT[position]);
+                initAdapter(Model.getGroups().get(position).getChildren());
                 mainAdapter.setSelectItem(position);
                 mainAdapter.notifyDataSetChanged();
             }
         });
-        mainlist.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        mainList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         // 一定要设置这个属性，否则ListView不会刷新
-        initAdapter(Model.MORELISTTXT[0]);
+        initAdapter(Model.getGroups().get(0).getChildren());
 
-        morelist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        moreList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
@@ -61,16 +59,10 @@ public class CustomGridViewActivity extends Activity {
         });
     }
 
-    private void initAdapter(String[] array) {
-        moreAdapter = new CustomGridViewAdapter(this, array);
-        morelist.setAdapter(moreAdapter);
+    private void initAdapter(ArrayList<ChildBean> list) {
+        moreAdapter = new CustomGridViewAdapter(this, list);
+        moreList.setAdapter(moreAdapter);
         moreAdapter.notifyDataSetChanged();
     }
 
-    private void initModle() {
-        mainList = new ArrayList<String>();
-        for (int i = 0; i < Model.LISTVIEWTXT.length; i++) {
-            mainList.add(Model.LISTVIEWTXT[i]);
-        }
-    }
 }

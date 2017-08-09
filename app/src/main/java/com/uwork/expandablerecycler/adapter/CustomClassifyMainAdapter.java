@@ -8,17 +8,18 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.uwork.expandablerecycler.R;
+import com.uwork.expandablerecycler.bean.GroupBean;
 
 import java.util.List;
 
 public class CustomClassifyMainAdapter extends BaseAdapter {
 
 	private Context context;
-	private List<String> list;
-	private int position = 0;
+	private List<GroupBean> list;
+	private int mCurrentPosition = 0;
 	Holder hold;
 
-	public CustomClassifyMainAdapter(Context context, List<String> list) {
+	public CustomClassifyMainAdapter(Context context, List<GroupBean> list) {
 		this.context = context;
 		this.list = list;
 	}
@@ -35,7 +36,7 @@ public class CustomClassifyMainAdapter extends BaseAdapter {
 		return position;
 	}
 
-	public View getView(int arg0, View view, ViewGroup viewGroup) {
+	public View getView(int position, View view, ViewGroup viewGroup) {
 
 		if (view == null) {
 			view = View.inflate(context, R.layout.custom_item_classify_mainlist, null);
@@ -44,20 +45,20 @@ public class CustomClassifyMainAdapter extends BaseAdapter {
 		} else {
 			hold = (Holder) view.getTag();
 		}
-		hold.txt.setText(list.get(arg0));
+		hold.txt.setText(list.get(position).getTitle());
 		hold.layout.setBackgroundColor(0xFFEBEBEB);
-		if (arg0 == position) {
+		if (position == mCurrentPosition) {
 			hold.layout.setBackgroundColor(0xFFFFFFFF);
 		}
 		return view;
 	}
 
 	public void setSelectItem(int position) {
-		this.position = position;
+		this.mCurrentPosition = position;
 	}
 
 	public int getSelectItem() {
-		return position;
+		return mCurrentPosition;
 	}
 
 	private static class Holder {

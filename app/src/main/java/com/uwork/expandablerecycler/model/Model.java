@@ -1,12 +1,17 @@
 package com.uwork.expandablerecycler.model;
 
+import com.uwork.expandablerecycler.bean.ChildBean;
+import com.uwork.expandablerecycler.bean.GroupBean;
+
+import java.util.ArrayList;
+
 public class Model {
 
 	// 第一个listview的文本数据数组
-	public static String[] LISTVIEWTXT = new String[] { "热门分类", "美食", "购物",
+	private static String[] GROUP_LIST = new String[] { "热门分类", "美食", "购物",
 			"休闲娱乐", "运动健身", "丽人", "结婚", "酒店", "爱车", "亲子", "生活服务", "家装" };
 	// 第二个listview的文本数据
-	public static String[][] MORELISTTXT = {
+	private static String[][] CHILD_LIST = {
 			{ "全部分类", "小吃快餐", "咖啡厅", "电影院", "KTV", "茶馆", "足疗按摩", "超市/便利店",
 					"银行", "经济型酒店", "景点/郊游", "公园", "美发" },
 			{ "全部美食", "小吃快餐", "西餐", "火锅", "北京菜", "川菜", "日本", "面包甜点", "粤菜",
@@ -33,5 +38,17 @@ public class Model {
 			{ "全部生活服务", "医院", "银行", "齿科", "宠物", "培训", "快照/冲印", "学校", "旅行社",
 					"购物网站", "干洗店", "家政", "奢侈品护理", "商务楼", "小区", "更多生活服务" },
 			{ "全部家装", "家具家装", "家用电器", "建材", "家装卖场", "装修设计" } };
+
+	public static ArrayList<GroupBean> getGroups() {
+		ArrayList<GroupBean> groups = new ArrayList<>();
+		for (int i = 0; i < GROUP_LIST.length; i++) {
+			ArrayList<ChildBean> children = new ArrayList<>();
+			for (int j = 0; j < CHILD_LIST[i].length; j++) {
+				children.add(new ChildBean(CHILD_LIST[i][j]));
+			}
+			groups.add(new GroupBean(GROUP_LIST[i], children));
+		}
+		return groups;
+	}
 
 }
