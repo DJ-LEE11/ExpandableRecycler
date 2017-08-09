@@ -18,7 +18,7 @@
         android:orientation="horizontal" >
 
         <ListView
-            android:id="@+id/classify_mainlist"
+            android:id="@+id/classify_main_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="2"
@@ -29,28 +29,12 @@
             android:fastScrollEnabled="true"
             android:listSelector="#00000000"
             android:scrollbars="none" />
-        <GridView
-            android:id="@+id/classify_morelist"
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/classify_more_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:layout_centerInParent="true"
-            android:horizontalSpacing="10dp"
-            android:numColumns="2"
-            android:scrollbars="none"
-            android:verticalSpacing="10dp" />
-        <!--<ListView-->
-            <!--android:id="@+id/classify_morelist"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_weight="1"-->
-            <!--android:background="#fff"-->
-            <!--android:cacheColorHint="#00000000"-->
-            <!--android:divider="#ffebebeb"-->
-            <!--android:dividerHeight="0.5px"-->
-            <!--android:fastScrollEnabled="true"-->
-            <!--android:listSelector="#00000000"-->
-            <!--android:scrollbars="none" />-->
+            android:layout_weight="1"/>
     </LinearLayout>
 
 </LinearLayout>
