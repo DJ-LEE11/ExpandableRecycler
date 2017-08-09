@@ -12,9 +12,18 @@
         android:id="@+id/listGrid"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_margin="5dp"
+        android:layout_margin="10dp"
         android:background="#fe987654"
         android:text="ListGridView"
+        android:textColor="#ffffff" />
+
+    <Button
+        android:id="@+id/listGridDoubleData"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:background="#5a4861"
+        android:text="listGridDoubleData"
         android:textColor="#ffffff" />
 
 </LinearLayout>

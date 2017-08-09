@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
-    private Button  listGridview;
+    private Button  listGridview,listGridDoubleData;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,5 +22,17 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        listGridDoubleData = (Button) findViewById(R.id.listGridDoubleData);
+        listGridDoubleData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this,
+                        DoubleDataGridViewActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }
